@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calStyle.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script src="app.js"></script>
+    <div class="calculator">
+        <!-- display -->
+        <form>
+            <input type="text" class="display">
+        </form>
+
+        <div class="buttons">
+            <!-- numbers buttons-->
+            <div class="row">
+                <button type="button" class="btn btn-op" data-num="+">+</button>
+                <button type="button" class="btn btn-op" data-num="-">-</button>
+                <button type="button" class="btn btn-op" data-num="/">/</button>
+                <button type="button" class="btn btn-op" data-num="*">*</button>
+            </div>
+
+            <div class="row">
+                <button type="button" class="btn btn-op" data-num="9">9</button>
+                <button type="button" class="btn btn-op" data-num="8">8</button>
+                <button type="button" class="btn btn-op" data-num="7">7</button>
+                <button type="button" class="btn btn-op" data-num=".">.</button>
+            </div>
+
+            <div class="row">
+                <button type="button" class="btn btn-op" data-num="6">6</button>
+                <button type="button" class="btn btn-op" data-num="5">5</button>
+                <button type="button" class="btn btn-op" data-num="4">4</button>
+                <button type="button" class="btn btn-equal" >=</button>
+            </div>
+
+            <div class="row">
+                <button type="button" class="btn btn-op" data-num="3">3</button>
+                <button type="button" class="btn btn-op" data-num="2">2</button>
+                <button type="button" class="btn btn-op" data-num="1">1</button>
+                <button type="button" class="btn btn-op" data-num="0">0</button>
+            </div>
+
+            <div class="row">
+                <button type="button" class="btn btn-clear" >Clear</button>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        
+        const display = document.querySelector('.display');
+
+        const buttons = document.querySelectorAll('.btn');
+
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                
+                const buttonValue = button.dataset.num;
+
+                
+                if (buttonValue !== undefined) {
+                
+                display.value += buttonValue;
+                } else if (button.classList.contains('btn-clear')) {
+                
+                display.value = '';
+                } else if (button.classList.contains('btn-equal')) {
+                
+                try {
+                    const result = eval(display.value);
+                    display.value = result;
+                } catch (error) {
+                    display.value = 'Error';
+                }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
